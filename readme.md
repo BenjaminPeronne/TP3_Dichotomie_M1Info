@@ -40,34 +40,34 @@ En C++ le catalogue des macros et déclarations est inclus au début du code sou
 
 2. Ecrire l'algorithme du sous-programme dichotomie qui reçoit en paramètres : les bornes de l'intervalle de recherche initial ainsi que la précision recherchée et renvoie la valeur du zéro de la fonction ainsi que le nombre d'itérations nécessaires pour trouver la solution.
 
-```cpp
-// Cette fonction calcule la valeur du zéro de la fonction f(x) = 3. sin(x)/x
-// dans l'intervalle [a,b] avec une précision donnée
-void dichotomie(double a, double b, double precision, double &zero, int &nbIterations) {
-    double fA, fB, fM, m;
+    ```cpp
+    // Cette fonction calcule la valeur du zéro de la fonction f(x) = 3. sin(x)/x
+    // dans l'intervalle [a,b] avec une précision donnée
+    void dichotomie(double a, double b, double precision, double &zero, int &nbIterations) {
+        double fA, fB, fM, m;
 
-    SinusCardinal(a, fA);
-    SinusCardinal(b, fB);
+        SinusCardinal(a, fA);
+        SinusCardinal(b, fB);
 
-    nbIterations = 0;
+        nbIterations = 0;
 
-    while (b - a > precision) {
-        m = (a + b) / 2;
+        while (b - a > precision) {
+            m = (a + b) / 2;
 
-        SinusCardinal(m, fM);
-        
-        if (fM * fA < 0) {
-            b = m;
-            fB = fM;
-        } else {
-            a = m;
-            fA = fM;
+            SinusCardinal(m, fM);
+            
+            if (fM * fA < 0) {
+                b = m;
+                fB = fM;
+            } else {
+                a = m;
+                fA = fM;
+            }
+            nbIterations++;
         }
-        nbIterations++;
+        zero = (a + b) / 2;
     }
-    zero = (a + b) / 2;
-}
-```
+    ```
 
 
 ## 1.4 Calcul de l'intégrale d'une fonction par la méthode des trapèzes

@@ -28,3 +28,46 @@ En C++ le catalogue des macros et déclarations est inclus au début du code sou
 > la fonction qui permet de calculer les puissances sous la forme y^x est définie comme `pow(y,x)`
 
 ## 1.3 Recherche d'un zéro d'une fonction par dichotomie
+
+1. Ecrire l'algorithme d'un sous programme SinusCardinal qui effectue le calcul de la fonction f(x) = 3. sin(x)/x, avec f(0) = 3. Choisir le type de la valeur donnée en entrée et le type de la valeur renvoyée par la fonction.
+
+    ```cpp
+    // Cette fonction calcule la valeur de la fonction f(x) = 3. sin(x)/x
+    void SinusCardinal(double x, double &f) {
+        f = 3 * sin(x) / x;
+    }
+    ```
+
+2. Ecrire l'algorithme du sous-programme dichotomie qui reçoit en paramètres : les bornes de l'intervalle de recherche initial ainsi que la précision recherchée et renvoie la valeur du zéro de la fonction ainsi que le nombre d'itérations nécessaires pour trouver la solution.
+
+```cpp
+// Cette fonction calcule la valeur du zéro de la fonction f(x) = 3. sin(x)/x
+// dans l'intervalle [a,b] avec une précision donnée
+void dichotomie(double a, double b, double precision, double &zero, int &nbIterations) {
+    double fA, fB, fM, m;
+
+    SinusCardinal(a, fA);
+    SinusCardinal(b, fB);
+
+    nbIterations = 0;
+
+    while (b - a > precision) {
+        m = (a + b) / 2;
+
+        SinusCardinal(m, fM);
+        
+        if (fM * fA < 0) {
+            b = m;
+            fB = fM;
+        } else {
+            a = m;
+            fA = fM;
+        }
+        nbIterations++;
+    }
+    zero = (a + b) / 2;
+}
+```
+
+
+## 1.4 Calcul de l'intégrale d'une fonction par la méthode des trapèzes

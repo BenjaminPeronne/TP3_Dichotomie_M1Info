@@ -103,6 +103,7 @@ En se basant sur les bornes de l'intervalle [a,b], l'expression de l'aire de cha
 > on choisit les bornes a = 0 et b = 𝜋/2
 
 3. Préparer un jeu de test à partir d'un découpage en 5 trapèzes entre les bornes a et b.
+> ...
 
 4. Ecrire l'algorithme du sous-programme SinusPlusUn qui effecute le calcul de la fonction f(x) défini ci-avant. Choisir le type de la valeur donnée en entrée et le type de la valeur renvoyée par la fonction.
 
@@ -139,9 +140,6 @@ En se basant sur les bornes de l'intervalle [a,b], l'expression de l'aire de cha
     }
     ```
 
-6. Ecrire l'algorithme du programme principal qui demande à l'utilisateur de fournir les bornes de l'intervalle de calcul de l'intégrale a et b ainsi que le nombre de trapèzes. Ce programme principal appelle la fonction trapeze et affiche le résultat du calcul intégral par la méthode des trapèzes.
-
-Le programme principal doit aussi afficher le résultat du calcul intégram "théorique" obtenu avec la primitive de la fonction f(x) ainsi que l'erreur relative entre les deux méthodes de calcul.
 
 ## 1.5 Calcul de sin(x) à l'aide d'une série de Taylor
 
@@ -197,7 +195,3 @@ On utilise une valeur caractéristique de x pour faciliter la mise au point du p
         nbTermes = n;
     }
     ```
-
-5. Ecrire l'agorithme du programme principal qui demande à l'utilisateur de fournir la valeur de x et la précision souhaitée pour la valeur approchée de sin(x). Ce programme principal appelle le sous-programme sinusTaylor et affiche le résultat du calcul.
-
-Le programme principal doit aussi afficher le résultat du calcul direct de sin(x) ainsi que l'erreur relative entre les deux méthodes de calcul.

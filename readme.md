@@ -32,8 +32,11 @@ En C++ le catalogue des macros et déclarations est inclus au début du code sou
 1. Ecrire l'algorithme d'un sous programme SinusCardinal qui effectue le calcul de la fonction f(x) = 3. sin(x)/x, avec f(0) = 3. Choisir le type de la valeur donnée en entrée et le type de la valeur renvoyée par la fonction.
 
     ```cpp
-    // Cette fonction calcule la valeur de la fonction f(x) = 3. sin(x)/x
+    // Cette fonction calcule la valeur de la fonction f(x) = 3. sin(x)/x 
     void SinusCardinal(double x, double &f) {
+    if (x == 0) {
+        f = 3;
+    } else {
         f = 3 * sin(x) / x;
     }
     ```
@@ -71,3 +74,67 @@ En C++ le catalogue des macros et déclarations est inclus au début du code sou
 
 
 ## 1.4 Calcul de l'intégrale d'une fonction par la méthode des trapèzes
+
+Objectif : Calculer l'intégrale de la fonction f(x) = sin(x) + 1 sur un intervalle défini [a,b] à l'aide de la méthode des trapèzes. Cette méthode consiste à découper l'intervalle choisi en n trapèzes de même largeur dont on sait calculer l'aire.
+
+La somme des aires des trapèzes est une approximation de l'intégrale de la fonction sur l'intervalle [a,b]. Plus le nombre de trapèzes est important, meilleure est l'approximation.
+
+L'expression de la largeur l d'un trapèze est l = (b-a)/n ou a et b sont les bornes de l'intervalle choisi pour le calcul et n le bomvre de trapèzes dont on doit calculer l'aire.
+
+L'expression de l'aide du trapèze ABCD dans la copie d'écran du document du TP3 est : AD.(AB+BC)/2 = l.(f(a)+f(b))/2
+
+En se basant sur les bornes de l'intervalle [a,b], l'expression de l'aire de chaque trapèze est de la forme:
+
+* aire du trapèze n°1 = l.(f(a)+f(a+l))/2
+* aire du trapèze n°2 = l.(f(a+l)+f(a+2.l))/2
+* aire du n-1ème trapèze = l.(f(a+(n-2).l)+f(a+(n-1).l))/2
+* aire du nème trapèze = l.(f(a+(n-1).l)+f(b))/2
+
+1. Donner la primitive de la fonction f(x) = sin(x) + 1 sur l'intervalle [a, b] sin(x) + 1 
+> la primitive de la fonction f(x) = sin(x) + 1 sur l'intervalle [a, b] est : -cos(x) + x + C
+
+2. Choisir un jeu de bornes a et b en radians et calculer le résultat théorique à approcher par la méthode des trapèzes.
+> on choisit les bornes a = 0 et b = 𝜋/2
+
+3. Préparer un jeu de test à partir d'un découpage en 5 trapèzes entre les bornes a et b.
+
+4. Ecrire l'algorithme du sous-programme SinusPlusUn qui effecute le calcul de la fonction f(x) défini ci-avant. Choisir le type de la valeur donnée en entrée et le type de la valeur renvoyée par la fonction.
+
+    ```cpp
+    // Cette fonction calcule la valeur de la fonction f(x) = sin(x) + 1
+    void SinusPlusUn(double x, double &f) {
+        f = sin(x) + 1;
+    }
+    ```
+
+5. Ecrire l'algorithme du sous-programme trapeze qui reçoit en paramètres les bornes de l'intervalle de calcul ainsi que le nombre de trapèzes. Ce sous-programme renvoie le résultat du calcul par la méthode des trapèzes.
+    
+        ```cpp
+        // Cette fonction calcule l'intégrale de la fonction f(x) = sin(x) + 1
+        // dans l'intervalle [a,b] avec un nombre de trapèzes donné
+        void trapeze(double a, double b, int n, double &resultat) {
+            double l, fA, fB, fM, m;
+    
+            SinusPlusUn(a, fA);
+            SinusPlusUn(b, fB);
+    
+            l = (b - a) / n;
+    
+            resultat = 0;
+    
+            for (int i = 1; i < n; i++) {
+                m = a + i * l;
+                SinusPlusUn(m, fM);
+                resultat += l * (fA + fM) / 2;
+                fA = fM;
+            }
+    
+            resultat += l * (fA + fB) / 2;
+        }
+        ```
+
+6. Ecrire l'algorithme du programme principal qui demande à l'utilisateur de fournir les bornes de l'intervalle de calcul de l'intégrale a et b ainsi que le nombre de trapèzes. Ce programme principal appelle la fonction trapeze et affiche le résultat du calcul intégral par la méthode des trapèzes.
+
+Le programme principal doit aussi afficher le résultat du calcul intégram "théorique" obtenu avec la primitive de la fonction f(x) ainsi que l'erreur relative entre les deux méthodes de calcul.
+
+## 1.5 Calcul de sin(x) à l'aide d'une série de Taylor

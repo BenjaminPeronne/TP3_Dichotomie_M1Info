@@ -72,6 +72,12 @@ En C++ le catalogue des macros et déclarations est inclus au début du code sou
     }
     ```
 
+4. Préparer un jeu de test complet de calcul d'un zéro de la fonction f(x) en utilisant des bornes d'intervalle différentes de celles de la copie d'écran GeoGebra donnée en TP3
+
+| Bornes            |  \|a-b\| < epsilon | itération  | Valeur de x|
+| :---------------: |:------------------:| :---------:| :--------: |
+| a = -1.5; b = 1.5 |   faux             |        5   |  1.45312   |
+
 
 ## 1.4 Calcul de l'intégrale d'une fonction par la méthode des trapèzes
 

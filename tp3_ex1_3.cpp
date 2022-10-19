@@ -54,6 +54,11 @@ void dichotomie(double a, double b, double precision, double &zero, int &nbItera
     zero = (a + b) / 2;
 }
 
+// Vérifier si |a - b| < precision (vrai ou faux)
+bool verifPrecision(double a, double b, double precision) {
+    return (abs(a - b) < precision);
+}
+
 // ==================================================
 // ================ MAIN ============================
 // ==================================================
@@ -75,6 +80,8 @@ int main() {
 
     cout << "La solution est x = " << x << endl;
     cout << "Le nombre d'iterations necessaires est n = " << n << endl;
+
+    cout << "Vérification : |a - b| < eps : " << verifPrecision(a, b, eps) << endl;
 
     return 0;
 }

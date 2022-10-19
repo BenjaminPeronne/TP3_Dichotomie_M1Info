@@ -109,29 +109,29 @@ En se basant sur les bornes de l'intervalle [a,b], l'expression de l'aire de cha
 
 5. Ecrire l'algorithme du sous-programme trapeze qui reçoit en paramètres les bornes de l'intervalle de calcul ainsi que le nombre de trapèzes. Ce sous-programme renvoie le résultat du calcul par la méthode des trapèzes.
     
-        ```cpp
-        // Cette fonction calcule l'intégrale de la fonction f(x) = sin(x) + 1
-        // dans l'intervalle [a,b] avec un nombre de trapèzes donné
-        void trapeze(double a, double b, int n, double &resultat) {
-            double l, fA, fB, fM, m;
-    
-            SinusPlusUn(a, fA);
-            SinusPlusUn(b, fB);
-    
-            l = (b - a) / n;
-    
-            resultat = 0;
-    
-            for (int i = 1; i < n; i++) {
-                m = a + i * l;
-                SinusPlusUn(m, fM);
-                resultat += l * (fA + fM) / 2;
-                fA = fM;
-            }
-    
-            resultat += l * (fA + fB) / 2;
+    ```cpp
+    // Cette fonction calcule l'intégrale de la fonction f(x) = sin(x) + 1
+    // dans l'intervalle [a,b] avec un nombre de trapèzes donné
+    void trapeze(double a, double b, int n, double &resultat) {
+        double l, fA, fB, fM, m;
+
+        SinusPlusUn(a, fA);
+        SinusPlusUn(b, fB);
+
+        l = (b - a) / n;
+
+        resultat = 0;
+
+        for (int i = 1; i < n; i++) {
+            m = a + i * l;
+            SinusPlusUn(m, fM);
+            resultat += l * (fA + fM) / 2;
+            fA = fM;
         }
-        ```
+
+        resultat += l * (fA + fB) / 2;
+    }
+    ```
 
 6. Ecrire l'algorithme du programme principal qui demande à l'utilisateur de fournir les bornes de l'intervalle de calcul de l'intégrale a et b ainsi que le nombre de trapèzes. Ce programme principal appelle la fonction trapeze et affiche le résultat du calcul intégral par la méthode des trapèzes.
 

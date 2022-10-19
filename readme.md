@@ -138,3 +138,60 @@ En se basant sur les bornes de l'intervalle [a,b], l'expression de l'aire de cha
 Le programme principal doit aussi afficher le résultat du calcul intégram "théorique" obtenu avec la primitive de la fonction f(x) ainsi que l'erreur relative entre les deux méthodes de calcul.
 
 ## 1.5 Calcul de sin(x) à l'aide d'une série de Taylor
+
+Objectif : Le but de cet exercice est de déterminer le nombre de termes de la série de Taylor à calculer pour une valeur de sin(x) avec une précision donnée. Une fois la précision souhaitée atteinte, on détermine l'erreur relative à l'aide du calcul direct de sin(x).
+
+On utilise une valeur caractéristique de x pour faciliter la mise au point du programme : x = pi/6.
+
+2. Reprendre l'algorithme de la fonction puisssance étudiée en TD et le modifierp our prendre en compte le type de la valeur donnée en entrée et le type de la valeur renvoyée par la fonction.
+
+    ```cpp
+    // Cette fonction calcule la puissance d'un nombre
+    void puissance(double x, int n, double &resultat) {
+        resultat = 1;
+        for (int i = 1; i <= n; i++) {
+            resultat *= x;
+        }
+    }
+    ```
+
+3. Reprendre l'algorithme de la fonction factorielle étudiée en préambule du TP N°1 et le modifier afin de prendre en compte le type de la valeur donnée en entréee et le type de la valeur renvoyée par la fonction.
+
+    ```cpp
+    // Cette fonction calcule la factorielle d'un nombre
+    void factorielle(int n, double &resultat) {
+        resultat = 1;
+        for (int i = 1; i <= n; i++) {
+            resultat *= i;
+        }
+    }
+    ```
+
+4. Ecrire l'algortihme du sous-programme sinusTaylor qui recoit en paramètre la valeur de x et la précision epsilon souhaitée. Ce sous-programme calcule les termes de la série de Taylor les uns après les autres. Le calcul s'arrête dès que le terme calculé est inférieur à la précision souhaitée. La valeur approchée du sinus est alors renvoyée au programme appelant ainsi que le nombre de termes calculés pour atteidnre la précision souhaitée.
+
+    ```cpp
+    // Cette fonction calcule la valeur approchée de sin(x) avec une précision epsilon
+    void sinusTaylor(double x, double epsilon, double &resultat, int &nbTermes) {
+        double terme, signe;
+        int n;
+
+        resultat = 0;
+        n = 0;
+        signe = 1;
+
+        do {
+            puissance(x, 2 * n + 1, terme);
+            factorielle(2 * n + 1, terme);
+            terme *= signe;
+            resultat += terme;
+            signe *= -1;
+            n++;
+        } while (terme > epsilon);
+
+        nbTermes = n;
+    }
+    ```
+
+5. Ecrire l'agorithme du programme principal qui demande à l'utilisateur de fournir la valeur de x et la précision souhaitée pour la valeur approchée de sin(x). Ce programme principal appelle le sous-programme sinusTaylor et affiche le résultat du calcul.
+
+Le programme principal doit aussi afficher le résultat du calcul direct de sin(x) ainsi que l'erreur relative entre les deux méthodes de calcul.
